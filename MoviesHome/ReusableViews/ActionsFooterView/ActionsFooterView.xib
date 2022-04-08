@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActionsFooterView" customModule="CFC" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="gMk-Z9-9gS"/>
+                <outlet property="stackView" destination="QxL-5S-RDX" id="9R2-21-rE4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="554" height="176"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QxL-5S-RDX">
+                    <rect key="frame" x="24" y="8" width="506" height="160"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="750" constant="48" id="EJR-W6-RDX"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="QxL-5S-RDX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Ilg-Sf-ZC1"/>
+                <constraint firstAttribute="bottom" secondItem="QxL-5S-RDX" secondAttribute="bottom" constant="8" id="Tol-ke-Pv5"/>
+                <constraint firstAttribute="trailing" secondItem="QxL-5S-RDX" secondAttribute="trailing" constant="24" id="Xf1-nK-t61"/>
+                <constraint firstItem="QxL-5S-RDX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="eCY-nr-zNu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="96" y="26"/>
+        </view>
+    </objects>
+</document>
