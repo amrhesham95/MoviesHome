@@ -48,6 +48,16 @@ class MoviesHomeViewModel: ViewModel {
         return movies[index]
     }
     
+    func posterURL(_ index: Int) -> URL? {
+        guard index < movies.count - 1 else { return nil }
+        
+        guard let path = movies[index].poster_path, let url = URL(string: APIConstants.movieDBImagesBaseURL + path) else {
+            return nil
+        }
+        
+        return url
+    }
+    
 }
 
 // MARK: - Private helper

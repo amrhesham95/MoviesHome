@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF20F8852801FDCD00895DCE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EF20F8842801FDCD00895DCE /* SDWebImage */; };
 		EF96920627FF75E000F8B70F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920527FF75E000F8B70F /* AppDelegate.swift */; };
 		EF96920A27FF75E000F8B70F /* MoviesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920927FF75E000F8B70F /* MoviesHomeViewController.swift */; };
 		EF96920F27FF75E200F8B70F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF96920E27FF75E200F8B70F /* Assets.xcassets */; };
@@ -129,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF20F8852801FDCD00895DCE /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +376,9 @@
 			dependencies = (
 			);
 			name = MoviesHome;
+			packageProductDependencies = (
+				EF20F8842801FDCD00895DCE /* SDWebImage */,
+			);
 			productName = MoviesHome;
 			productReference = EF96920227FF75E000F8B70F /* MoviesHome.app */;
 			productType = "com.apple.product-type.application";
@@ -402,6 +407,9 @@
 				Base,
 			);
 			mainGroup = EF9691F927FF75E000F8B70F;
+			packageReferences = (
+				EF20F8832801FDCD00895DCE /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = EF96920327FF75E000F8B70F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -694,6 +702,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EF20F8832801FDCD00895DCE /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EF20F8842801FDCD00895DCE /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF20F8832801FDCD00895DCE /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF9691FA27FF75E000F8B70F /* Project object */;
 }

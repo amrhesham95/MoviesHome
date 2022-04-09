@@ -82,10 +82,14 @@ extension MoviesHomeViewController: UICollectionViewDataSource {
         let cardView = MovieCardView(frame: .zero)
         cell.cellView = cardView
         cell.cellView?.movie = moviesViewModel.movieAt(indexPath.item)
-        cell.backgroundColor = .green
+        
+        let imageWidth = collectionViewLayout.itemSize.width
+        let imageSize = CGSize(width: imageWidth, height: imageWidth*1.5)
+        if let imageURL = moviesViewModel.posterURL(indexPath.item) {
+            cell.cellView?.configure(imageURL: imageURL, size: imageSize, indexPath: indexPath)
+        }
         return cell
     }
-    
 }
 
 private extension MoviesHomeViewController {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MovieCardView: UIView {
     
@@ -81,7 +82,7 @@ class MovieCardView: UIView {
     ///   - size: size for the image
     ///   - indexPath: indexPath of list
     func configure(imageURL: URL, size: CGSize, indexPath: IndexPath) {
-//        photoImageView.loadImage(with: imageURL, size: size, indexPath: indexPath)
+        photoImageView.sd_setImage(with: imageURL, completed: nil)
     }
 }
 
