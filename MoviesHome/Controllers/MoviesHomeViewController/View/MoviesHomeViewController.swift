@@ -27,11 +27,11 @@ final class MoviesHomeViewController: BaseViewController {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: collectionViewLayout)
         collectionView.backgroundColor = .appBackground()
         collectionView.dataSource = self
-//        collectionView.delegate = self
+        collectionView.delegate = self
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-
+    
     //MARK: ViewController Lifecycle
     override func loadView() {
         view = UIView()
@@ -45,7 +45,7 @@ final class MoviesHomeViewController: BaseViewController {
         bindOnViewModel(moviesViewModel)
         bindLoadingState(to: moviesViewModel)
         bindErrorState(to: moviesViewModel)
-        moviesViewModel.viewDidLoad()
+        moviesViewModel.getMovies()
     }
     
     private func setupViews() {
@@ -54,8 +54,8 @@ final class MoviesHomeViewController: BaseViewController {
     }
     
     private func configureNavBarButtons() {
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(with: .SEARCH),
-//                                             style: .plain, target: self,action: #selector(tappedSearch))
+        //        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(with: .SEARCH),
+        //                                             style: .plain, target: self,action: #selector(tappedSearch))
     }
     
     //MARK: ConfigureCollectionView
@@ -63,11 +63,11 @@ final class MoviesHomeViewController: BaseViewController {
         view.addSubview(collectionView)
         collectionView.pinEdgesToSuperview()
         collectionView.registerCell(GenericCollectionViewCell<MovieCardView>.self)
-//        collectionView.register(FooterView.self, ofKind: UICollectionView.elementKindSectionFooter)
+        //        collectionView.register(FooterView.self, ofKind: UICollectionView.elementKindSectionFooter)
     }
     
     @objc func tappedSearch() {
-//        presenter.tappedOnSearch()
+        //        presenter.tappedOnSearch()
     }
 }
 
@@ -92,10 +92,30 @@ extension MoviesHomeViewController: UICollectionViewDataSource {
     }
 }
 
+extension MoviesHomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        loadMoreMoviesIfNeeded(indexPath: indexPath)
+    }
+}
+
 private extension MoviesHomeViewController {
+    func loadMoreMoviesIfNeeded(indexPath: IndexPath) {
+        guard moviesViewModel.state.value != .loading, indexPath.row == (moviesViewModel.moviesCount - 1) else {
+            return
+        }
+        moviesViewModel.getMovies()
+    }
     func bindOnViewModel(_ viewModel: MoviesHomeViewModel) {
-        viewModel.moviesSubject.subscribe { [weak self] _ in
-            self?.collectionView.reloadData()
+        viewModel.moviesSubject.subscribe { [weak self] movies, indexPaths in
+            if indexPaths.isEmpty {
+                self?.collectionView.reloadData()
+            } else {
+                self?.collectionView.performBatchUpdates({ [weak self] in
+                    guard let self = self else { return }
+                    self.moviesViewModel = viewModel
+                    self.collectionView.insertItems(at: indexPaths)
+                })
+            }
         }.disposed(by: disposeBag)
     }
 }

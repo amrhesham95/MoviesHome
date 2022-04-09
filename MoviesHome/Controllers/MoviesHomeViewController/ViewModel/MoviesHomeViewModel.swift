@@ -12,7 +12,7 @@ import Foundation
 class MoviesHomeViewModel: ViewModel {
     
     // MARK: - Properties
-    let moviesSubject: PublishSubject<[Movie]> = PublishSubject<[Movie]>()
+    let moviesSubject: PublishSubject<([Movie], [IndexPath])> = PublishSubject<([Movie], [IndexPath])>()
     
     private let disposeBag = DisposeBag()
     private let store: MoviesStoreProtocol
@@ -23,6 +23,18 @@ class MoviesHomeViewModel: ViewModel {
         return movies.count
     }
     
+    var pageNum = Constants.defaultPageNum
+    var totalCount = Constants.defaultTotalCount
+    var totalPages = Constants.defaultPageNum
+    
+    var isMoreDataAvailable: Bool {
+        guard totalPages != 0 else {
+            return true
+        }
+        return pageNum < totalPages
+    }
+
+    
     // MARK: - Init
     
     init(store: MoviesStoreProtocol = MoviesStore()) {
@@ -30,9 +42,9 @@ class MoviesHomeViewModel: ViewModel {
         super.init()
     }
     
-    func viewDidLoad() {
+    func loadMovies(for pageNumber: Int) {
         state.send(.loading)
-        store.loadMovies(for: 1, completion: { [weak self] in
+        store.loadMovies(for: pageNumber, completion: { [weak self] in
             switch $0 {
             case .success(let response):
                 self?.state.send(.success)
@@ -58,6 +70,16 @@ class MoviesHomeViewModel: ViewModel {
         return url
     }
     
+    func getMovies() {
+        guard isMoreDataAvailable else {
+            state.send(.success)
+            return
+        }
+        state.send(.loading)
+        pageNum += 1
+        loadMovies(for: pageNum)
+    }
+    
 }
 
 // MARK: - Private helper
@@ -68,14 +90,34 @@ private extension MoviesHomeViewModel {
     /// - Parameters:
     ///   - currency: returned object from the API containts the exhange rate
     func didReceiveMovies(_ moviesResponse: MoviesListResponse) {
-        if let movies = moviesResponse.results {
+        guard let movies = moviesResponse.results else { return }
+        if totalCount == Constants.defaultTotalCount {
+            //            moviesViewModel = MoviesViewModel(_movies: movies)
+            totalCount = movies.count
             DispatchQueue.main.async { [weak self] in
-                self?.movies = movies
-                self?.moviesSubject.send(movies)
+                self?.movies.append(contentsOf: movies)
+                self?.moviesSubject.send((movies, []))
             }
-            
+        } else {
+            insertMoreMovies(with: movies)
         }
     }
+    
+    fileprivate func insertMoreMovies(with movies: [Movie]) {
+        let previousCount = totalCount
+        totalCount += movies.count
+        self.movies.append(contentsOf: movies)
+        let indexPaths: [IndexPath] = (previousCount..<totalCount).map {
+            return IndexPath(item: $0, section: 0)
+        }
+        DispatchQueue.main.async { [unowned self] in
+//            self.view?.insertMovies(with: self.moviesViewModel, at: indexPaths)
+//            self.view?.changeViewState(.content)
+            self.moviesSubject.send((movies, indexPaths))
+            state.send(.success)
+        }
+    }
+
     
     func handleError(_ error: Error) {
         state.send(.failure(error))

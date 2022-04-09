@@ -13,5 +13,5 @@ class ViewModel {
   
   /// State
   ///
-  var state = PublishSubject<State>()
+    var state = BehaviorSubject<State>(.success)
 }
