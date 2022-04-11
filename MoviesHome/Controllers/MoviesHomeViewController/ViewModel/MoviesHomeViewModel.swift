@@ -36,7 +36,6 @@ class MoviesHomeViewModel: ViewModel {
 
     
     // MARK: - Init
-    
     init(store: MoviesStoreProtocol = MoviesStore()) {
         self.store = store
         super.init()
