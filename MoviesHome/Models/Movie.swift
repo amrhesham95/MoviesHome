@@ -7,6 +7,23 @@
 
 import Foundation
 struct Movie: Codable, Hashable {
+    init(storage: StorageMovie) {
+        self.popularity = storage.popularity
+        self.vote_count = storage.vote_count
+        self.video = storage.video
+        self.poster_path = storage.poster_path
+        self.id = Int(storage.movieID)
+        self.adult = storage.adult
+        self.backdrop_path = storage.backdrop_path
+        self.original_language = storage.original_language
+        self.original_title = storage.original_title
+        self.genre_ids = []
+        self.title = storage.title
+        self.vote_average = storage.vote_average
+        self.overview = storage.overview
+        self.release_date = storage.release_date
+    }
+    
     let popularity : Double?
     let vote_count : Int?
     let video : Bool?
@@ -38,5 +55,19 @@ struct Movie: Codable, Hashable {
         case vote_average = "vote_average"
         case overview = "overview"
         case release_date = "release_date"
+    }
+}
+
+extension Movie {
+    func storageMovie(pageID: Int) -> StorageMovie {
+        let storageMovie = StorageMovie()
+        storageMovie.popularity = popularity ?? 0
+        storageMovie.vote_count = vote_count ?? 0
+        storageMovie.poster_path = poster_path ?? ""
+        storageMovie.movieID = id?.description ?? UUID().uuidString
+        storageMovie.title = title
+        storageMovie.pageID = pageID
+        
+        return storageMovie
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Typealias
-typealias GetMoviesCompletion = (Result<MoviesListResponse, Error>) -> Void
+typealias GetMoviesCompletion = (Result<[Movie], Error>) -> Void
 
 // MARK: - Store
 //

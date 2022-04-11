@@ -20,9 +20,6 @@ final class NetworkAPIClient: NetworkService {
     static var defaultSession: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 20
-        if #available(iOS 11.0, *) {
-            configuration.waitsForConnectivity = true
-        }
         return URLSession(configuration: configuration)
     }()
 

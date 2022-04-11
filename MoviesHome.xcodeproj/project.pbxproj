@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		EF20F8852801FDCD00895DCE /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EF20F8842801FDCD00895DCE /* SDWebImage */; };
+		EF20F8892802285500895DCE /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F8882802285500895DCE /* RealmStorage.swift */; };
+		EF20F88C28022AB300895DCE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = EF20F88B28022AB300895DCE /* Realm */; };
+		EF20F88E28022AB300895DCE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF20F88D28022AB300895DCE /* RealmSwift */; };
+		EF20F8902802307600895DCE /* Movie+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F88F2802307600895DCE /* Movie+Realm.swift */; };
 		EF96920627FF75E000F8B70F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920527FF75E000F8B70F /* AppDelegate.swift */; };
 		EF96920A27FF75E000F8B70F /* MoviesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920927FF75E000F8B70F /* MoviesHomeViewController.swift */; };
 		EF96920F27FF75E200F8B70F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF96920E27FF75E200F8B70F /* Assets.xcassets */; };
@@ -66,6 +70,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF20F8882802285500895DCE /* RealmStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
+		EF20F88F2802307600895DCE /* Movie+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Realm.swift"; sourceTree = "<group>"; };
 		EF96920227FF75E000F8B70F /* MoviesHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF96920527FF75E000F8B70F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF96920927FF75E000F8B70F /* MoviesHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesHomeViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF20F88E28022AB300895DCE /* RealmSwift in Frameworks */,
+				EF20F88C28022AB300895DCE /* Realm in Frameworks */,
 				EF20F8852801FDCD00895DCE /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +145,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF20F8862802285500895DCE /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				EF20F8872802285500895DCE /* Realm */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		EF20F8872802285500895DCE /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				EF20F8882802285500895DCE /* RealmStorage.swift */,
+				EF20F88F2802307600895DCE /* Movie+Realm.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 		EF9691F927FF75E000F8B70F = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +181,7 @@
 		EF96920427FF75E000F8B70F /* MoviesHome */ = {
 			isa = PBXGroup;
 			children = (
+				EF20F8862802285500895DCE /* Storage */,
 				EF96929728008B7300F8B70F /* Styles */,
 				EF96927C28008A6D00F8B70F /* ReusableViews */,
 				EF96926527FF8AF400F8B70F /* Network */,
@@ -378,6 +404,8 @@
 			name = MoviesHome;
 			packageProductDependencies = (
 				EF20F8842801FDCD00895DCE /* SDWebImage */,
+				EF20F88B28022AB300895DCE /* Realm */,
+				EF20F88D28022AB300895DCE /* RealmSwift */,
 			);
 			productName = MoviesHome;
 			productReference = EF96920227FF75E000F8B70F /* MoviesHome.app */;
@@ -409,6 +437,7 @@
 			mainGroup = EF9691F927FF75E000F8B70F;
 			packageReferences = (
 				EF20F8832801FDCD00895DCE /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				EF20F88A28022AB300895DCE /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = EF96920327FF75E000F8B70F /* Products */;
 			projectDirPath = "";
@@ -457,8 +486,10 @@
 				EF96920627FF75E000F8B70F /* AppDelegate.swift in Sources */,
 				EF9692A728008B7300F8B70F /* UISettings.swift in Sources */,
 				EF96928B28008A6D00F8B70F /* ActionsFooterView.swift in Sources */,
+				EF20F8892802285500895DCE /* RealmStorage.swift in Sources */,
 				EF96926E27FF8AF400F8B70F /* APIEndPoint.swift in Sources */,
 				EF96925D27FF88AC00F8B70F /* ViewModel.swift in Sources */,
+				EF20F8902802307600895DCE /* Movie+Realm.swift in Sources */,
 				EF96928C28008A6D00F8B70F /* ButtonAction.swift in Sources */,
 				EF96925427FF867800F8B70F /* PublishSubject.swift in Sources */,
 				EF9692A128008B7300F8B70F /* UIColor+SemanticColors.swift in Sources */,
@@ -712,6 +743,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		EF20F88A28022AB300895DCE /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -719,6 +758,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EF20F8832801FDCD00895DCE /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		EF20F88B28022AB300895DCE /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF20F88A28022AB300895DCE /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		EF20F88D28022AB300895DCE /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF20F88A28022AB300895DCE /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

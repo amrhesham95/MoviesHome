@@ -86,13 +86,11 @@ class MoviesHomeViewModel: ViewModel {
 //
 private extension MoviesHomeViewModel {
     
-    /// Called when the exchange rate is received
+    /// Called when the movies are received
     /// - Parameters:
-    ///   - currency: returned object from the API containts the exhange rate
-    func didReceiveMovies(_ moviesResponse: MoviesListResponse) {
-        guard let movies = moviesResponse.results else { return }
+    ///   - movies: returned movies from the API containts the movies
+    func didReceiveMovies(_ movies: [Movie]) {
         if totalCount == Constants.defaultTotalCount {
-            //            moviesViewModel = MoviesViewModel(_movies: movies)
             totalCount = movies.count
             DispatchQueue.main.async { [weak self] in
                 self?.movies.append(contentsOf: movies)
@@ -108,11 +106,9 @@ private extension MoviesHomeViewModel {
         totalCount += movies.count
         self.movies.append(contentsOf: movies)
         let indexPaths: [IndexPath] = (previousCount..<totalCount).map {
-            return IndexPath(item: $0, section: 0)
+            return IndexPath(row: $0, section: 0)
         }
         DispatchQueue.main.async { [unowned self] in
-//            self.view?.insertMovies(with: self.moviesViewModel, at: indexPaths)
-//            self.view?.changeViewState(.content)
             self.moviesSubject.send((movies, indexPaths))
             state.send(.success)
         }

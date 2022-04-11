@@ -112,7 +112,6 @@ private extension MoviesHomeViewController {
             } else {
                 self?.collectionView.performBatchUpdates({ [weak self] in
                     guard let self = self else { return }
-                    self.moviesViewModel = viewModel
                     self.collectionView.insertItems(at: indexPaths)
                 })
             }
