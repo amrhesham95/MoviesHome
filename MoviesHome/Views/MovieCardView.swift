@@ -10,6 +10,9 @@ import SDWebImage
 
 class MovieCardView: UIView {
     
+    // MARK: - Properties
+    var buttonAction: (() -> Void)?
+
     // MARK: View Properties
     lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
@@ -27,17 +30,21 @@ class MovieCardView: UIView {
         return imageView
     }()
     
-    lazy var bookButton: UIButton = {
-        let bookButton = UIButton()
-        bookButton.setTitle("Book", for: .normal)
-        bookButton.setTitleColor(.appWhite(), for: .normal)
-        bookButton.backgroundColor = UIColor(hex: APP_COLOR.THEME.rawValue)
-        bookButton.titleLabel?.font = UIFont(with: .MEDIUM, of: .SUB_TITLE)
-        return bookButton
+    lazy var favoriteButton: UIButton = {
+        let favoriteButton = UIButton()
+        favoriteButton.setTitle("Favorite", for: .normal)
+        favoriteButton.setTitleColor(.appWhite(), for: .normal)
+        favoriteButton.backgroundColor = UIColor(hex: APP_COLOR.THEME.rawValue)
+        favoriteButton.titleLabel?.font = UIFont(with: .MEDIUM, of: .SUB_TITLE)
+        return favoriteButton
     }()
     
+    @objc func favoriteButtonClicked() {
+        buttonAction?()
+    }
+    
     // MARK: Data Properties
-    var movie : Movie? {
+    var movie : StorageMovie? {
         didSet {
             guard let movie = movie else {
                 return
@@ -47,8 +54,9 @@ class MovieCardView: UIView {
     }
     
     // MARK: Init Methods
-    override init(frame: CGRect) {
+    init(frame: CGRect, onButtonClicked: @escaping () -> Void) {
         super.init(frame: frame)
+        buttonAction = onButtonClicked
         prepareView()
     }
     
@@ -68,11 +76,12 @@ class MovieCardView: UIView {
         titleLabel.pinTo(atrribute: .top, toView: photoImageView, toAttribute: .bottom, constant: Constants.defaultSpacing)
         titleLabel.pinEdgesEquallyToSuperview(atrributes: [.leading, .trailing], constant: Constants.defaultPadding)
         
-        addSubview(bookButton)
-        bookButton.pinTo(atrribute: .top, toView: titleLabel, toAttribute: .bottom, constant: Constants.defaultPadding/2)
-        bookButton.pinEdgesEquallyToSuperview(atrributes: [.leading, .trailing], constant: Constants.defaultPadding*2)
-        bookButton.pinEdgesEquallyToSuperview(atrributes: [.bottom], constant: Constants.defaultPadding)
-        bookButton.giveCorner(radius: Constants.defaultRadius)
+        addSubview(favoriteButton)
+        favoriteButton.pinTo(atrribute: .top, toView: titleLabel, toAttribute: .bottom, constant: Constants.defaultPadding/2)
+        favoriteButton.pinEdgesEquallyToSuperview(atrributes: [.leading, .trailing], constant: Constants.defaultPadding*2)
+        favoriteButton.pinEdgesEquallyToSuperview(atrributes: [.bottom], constant: Constants.defaultPadding)
+        favoriteButton.giveCorner(radius: Constants.defaultRadius)
+        favoriteButton.addTarget(self, action: #selector(favoriteButtonClicked), for: .touchUpInside)
     }
     
     // MARK: Methods

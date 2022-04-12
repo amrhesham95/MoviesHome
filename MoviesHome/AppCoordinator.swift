@@ -40,15 +40,6 @@ class AppCoordinator {
 //
 extension AppCoordinator {
   
-  /// Show OnboardingViewController
-  ///
-  func showOnboardingViewController() {
-    let viewController = MoviesHomeViewController()
-    viewController.coordinator = self
-    navigationController.setViewControllers([viewController], animated: true)
-    tabBarController?.setViewControllers([navigationController], animated: true)
-  }
-  
   /// Show MoviesViewController.
   ///
   func showMoviesScreen() {

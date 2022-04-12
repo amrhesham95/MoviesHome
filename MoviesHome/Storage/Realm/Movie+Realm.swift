@@ -13,6 +13,7 @@ import RealmSwift
 final class StorageMovie: Object {
     
     @objc dynamic var pageID: Int = 0
+    @objc dynamic var isFavorite: Bool = false
     @objc dynamic var popularity: Double = 0
     @objc dynamic var vote_count: Int = 0
     @objc dynamic var video: Bool = false

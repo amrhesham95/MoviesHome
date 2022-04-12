@@ -15,6 +15,8 @@
 		EF20F89A2804ECD700895DCE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F8982804ECD700895DCE /* MainTabBarController.swift */; };
 		EF20F89B2804ECD700895DCE /* AppTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F8992804ECD700895DCE /* AppTab.swift */; };
 		EF20F89D2804FC6800895DCE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F89C2804FC6800895DCE /* AppCoordinator.swift */; };
+		EF20F8A22804FF6100895DCE /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F8A12804FF6100895DCE /* FavoritesViewController.swift */; };
+		EF20F8A42804FF6A00895DCE /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F8A32804FF6A00895DCE /* FavoritesViewModel.swift */; };
 		EF96920627FF75E000F8B70F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920527FF75E000F8B70F /* AppDelegate.swift */; };
 		EF96920A27FF75E000F8B70F /* MoviesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920927FF75E000F8B70F /* MoviesHomeViewController.swift */; };
 		EF96920F27FF75E200F8B70F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF96920E27FF75E200F8B70F /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 		EF20F8982804ECD700895DCE /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		EF20F8992804ECD700895DCE /* AppTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTab.swift; sourceTree = "<group>"; };
 		EF20F89C2804FC6800895DCE /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		EF20F8A12804FF6100895DCE /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		EF20F8A32804FF6A00895DCE /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		EF96920227FF75E000F8B70F /* MoviesHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF96920527FF75E000F8B70F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF96920927FF75E000F8B70F /* MoviesHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesHomeViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +181,31 @@
 			path = MainTabBar;
 			sourceTree = "<group>";
 		};
+		EF20F89E2804FF3900895DCE /* FavoritesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EF20F8A02804FF4900895DCE /* View */,
+				EF20F89F2804FF4400895DCE /* ViewModel */,
+			);
+			path = FavoritesViewController;
+			sourceTree = "<group>";
+		};
+		EF20F89F2804FF4400895DCE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EF20F8A32804FF6A00895DCE /* FavoritesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EF20F8A02804FF4900895DCE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EF20F8A12804FF6100895DCE /* FavoritesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		EF9691F927FF75E000F8B70F = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +267,7 @@
 		EF96923727FF832300F8B70F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EF20F89E2804FF3900895DCE /* FavoritesViewController */,
 				EF96927A280089F900F8B70F /* BaseViewController.swift */,
 				EF96927227FF8CC500F8B70F /* MoviesHomeViewController */,
 			);
@@ -484,6 +514,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF20F8A42804FF6A00895DCE /* FavoritesViewModel.swift in Sources */,
 				EF96926327FF88DC00F8B70F /* MoviesStoreProtocol.swift in Sources */,
 				EF96923527FF7E4600F8B70F /* Movie.swift in Sources */,
 				EF96928D28008A6D00F8B70F /* LoadingButton.swift in Sources */,
@@ -494,6 +525,7 @@
 				EF96927627FF8D2000F8B70F /* MoviesHomeViewModel.swift in Sources */,
 				EF9692A428008B7300F8B70F /* Style.swift in Sources */,
 				EF96926F27FF8AF400F8B70F /* NetworkError.swift in Sources */,
+				EF20F8A22804FF6100895DCE /* FavoritesViewController.swift in Sources */,
 				EF9692A628008B7300F8B70F /* UIColor+SystemColors.swift in Sources */,
 				EF96922327FF793C00F8B70F /* UICollectionView+Helpers.swift in Sources */,
 				EF96920A27FF75E000F8B70F /* MoviesHomeViewController.swift in Sources */,

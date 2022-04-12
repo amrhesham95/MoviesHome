@@ -10,6 +10,7 @@ import UIKit
 
 enum Strings {
     static let moviesDBTitle = "Movies"
+    static let favoritesDBTitle = "Favorites"
     static let placeholder = "Search movie name..."
     
     static let cancel = "Cancel"

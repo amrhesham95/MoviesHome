@@ -82,10 +82,16 @@ extension MoviesHomeViewController: UICollectionViewDataSource {
         
         let cell: GenericCollectionViewCell<MovieCardView> = collectionView.dequeue(at: indexPath)
         cell.cellView?.removeFromSuperview()
-        let cardView = MovieCardView(frame: .zero)
+        let movie = moviesViewModel.movieAt(indexPath.item)
+        let cardView = MovieCardView(frame: .zero) {
+            
+            self.moviesViewModel.toggleFavorite(movie: movie, pageID: self.moviesViewModel.pageNum)
+            collectionView.reloadData()
+        }
+        cardView.favoriteButton.backgroundColor = moviesViewModel.isFavoriteForMovieAt(indexPath.row) ? .green : .red
         cell.cellView = cardView
-        cell.cellView?.movie = moviesViewModel.movieAt(indexPath.item)
         
+        cell.cellView?.movie = moviesViewModel.movieAt(indexPath.item)
         let imageWidth = collectionViewLayout.itemSize.width
         let imageSize = CGSize(width: imageWidth, height: imageWidth*1.5)
         if let imageURL = moviesViewModel.posterURL(indexPath.item) {
@@ -108,6 +114,7 @@ private extension MoviesHomeViewController {
         }
         moviesViewModel.getMovies()
     }
+    
     func bindOnViewModel(_ viewModel: MoviesHomeViewModel) {
         viewModel.moviesSubject.subscribe { [weak self] movies, indexPaths in
             if indexPaths.isEmpty {

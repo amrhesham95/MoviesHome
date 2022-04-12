@@ -12,12 +12,12 @@ import Foundation
 class MoviesHomeViewModel: ViewModel {
     
     // MARK: - Properties
-    let moviesSubject: PublishSubject<([Movie], [IndexPath])> = PublishSubject<([Movie], [IndexPath])>()
+    let moviesSubject: PublishSubject<([StorageMovie], [IndexPath])> = PublishSubject<([StorageMovie], [IndexPath])>()
     
     private let disposeBag = DisposeBag()
     private let store: MoviesStoreProtocol
     
-    private var movies: [Movie] = []
+    private var movies: [StorageMovie] = []
     
     var moviesCount: Int {
         return movies.count
@@ -54,17 +54,28 @@ class MoviesHomeViewModel: ViewModel {
         })
     }
     
-    func movieAt(_ index: Int) -> Movie? {
+    func toggleFavorite(movie: StorageMovie?, pageID: Int) {
+        guard let movie = movie else { return }
+        store.updateMovie(storageMovie: movie, pageID: pageNum)
+    }
+    
+    func movieAt(_ index: Int) -> StorageMovie? {
         guard index < movies.count - 1 else { return nil }
         return movies[index]
+    }
+    
+    func isFavoriteForMovieAt(_ index: Int) -> Bool {
+        guard let isFavorite = movieAt(index)?.isFavorite else {
+            return false
+        }
+        return isFavorite
     }
     
     func posterURL(_ index: Int) -> URL? {
         guard index < movies.count - 1 else { return nil }
         
-        guard let path = movies[index].poster_path, let url = URL(string: APIConstants.movieDBImagesBaseURL + path) else {
-            return nil
-        }
+        let path = movies[index].poster_path
+        let url = URL(string: APIConstants.movieDBImagesBaseURL + path)
         
         return url
     }
@@ -88,7 +99,7 @@ private extension MoviesHomeViewModel {
     /// Called when the movies are received
     /// - Parameters:
     ///   - movies: returned movies from the API containts the movies
-    func didReceiveMovies(_ movies: [Movie]) {
+    func didReceiveMovies(_ movies: [StorageMovie]) {
         if totalCount == Constants.defaultTotalCount {
             totalCount = movies.count
             DispatchQueue.main.async { [weak self] in
@@ -100,7 +111,7 @@ private extension MoviesHomeViewModel {
         }
     }
     
-    fileprivate func insertMoreMovies(with movies: [Movie]) {
+    fileprivate func insertMoreMovies(with movies: [StorageMovie]) {
         let previousCount = totalCount
         totalCount += movies.count
         self.movies.append(contentsOf: movies)

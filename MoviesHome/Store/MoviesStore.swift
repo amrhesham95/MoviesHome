@@ -7,7 +7,7 @@
 
 import Foundation
 protocol StorageManagerProtocol {
-    func insert<T>(object: T) throws
+    func updateObject<T>(_ object: T) throws
     func getAllObjects<T>(ofType type: T.Type, matching predicate: NSPredicate?) -> [T]
 }
 // MARK: - CurrencyStore
@@ -29,12 +29,7 @@ class MoviesStore: MoviesStoreProtocol {
 // MARK: - Network Handlers
 extension MoviesStore {
     func loadMovies(for pageNum: Int, completion: @escaping GetMoviesCompletion) {
-        let query = "pageID == \(pageNum)"
-        let predicate = NSPredicate(format: query)
-        
-        let movies = storageManager
-            .getAllObjects(ofType: StorageMovie.self, matching: predicate)
-            .map { Movie(storage: $0) }
+        let movies = getCachedMoviesFor(pageNum)
         
         if movies.isEmpty {
             loadFromRemoteIfNeeded(for: pageNum, completion: completion)
@@ -49,8 +44,7 @@ extension MoviesStore {
         network.dataRequest(endPoint, objectType: MoviesListResponse.self) { [weak self] in
             switch $0 {
             case let .success(response):
-                completion(.success(response.results ?? []))
-                self?.insertMovies(pageId: pageNum, moviesResponse: response)
+                self?.insertMovies(pageId: pageNum, moviesResponse: response, completion: completion)
             case let .failure(error):
                 completion(.failure(error))
             }
@@ -62,15 +56,50 @@ extension MoviesStore {
 // MARK: - Cache Handlers
 //
 extension MoviesStore {
-    func insertMovies(pageId: Int, moviesResponse: MoviesListResponse?) {
+    func insertMovies(pageId: Int, moviesResponse: MoviesListResponse?, completion: @escaping GetMoviesCompletion) {
         if let movies = moviesResponse?.results
         {
             let storageMovies = movies.map { $0.storageMovie(pageID: pageId)}
-            storageMovies.forEach { storageMovie in
-                DispatchQueue.main.async { [weak self] in
-                    try? self?.storageManager.insert(object: storageMovie)
+            DispatchQueue.main.async {  [weak self] in
+                storageMovies.forEach { storageMovie in
+                    try? self?.storageManager.updateObject(storageMovie)
                 }
+                let movies = self?.getCachedMoviesFor(pageId)
+                completion(.success(movies ?? []))
             }
+        }
+    }
+    
+    func getCachedMoviesFor(_ pageNum: Int) -> [StorageMovie] {
+        let query = "pageID == \(pageNum)"
+        let predicate = NSPredicate(format: query)
+        var movies: [StorageMovie]?
+        movies = storageManager
+                .getAllObjects(ofType: StorageMovie.self, matching: predicate)
+        return movies ?? []
+    }
+    
+    func updateMovie(storageMovie: StorageMovie, pageID: Int) {
+        storageMovie.isFavorite ? deleteFromFavorite(movie: Movie(storage: storageMovie), pageID: pageID) : addToFavorite(movie: Movie(storage: storageMovie), pageID: pageID)
+    }
+    
+    func deleteFromFavorite(movie: Movie, pageID: Int) {
+        do {
+            let storageMovie = movie.storageMovie(pageID: pageID)
+            storageMovie.isFavorite = false
+            try storageManager.updateObject(storageMovie)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func addToFavorite(movie: Movie, pageID: Int) {
+        do {
+            let storageMovie = movie.storageMovie(pageID: pageID)
+            storageMovie.isFavorite = true
+            try storageManager.updateObject(storageMovie)
+        } catch {
+            print(error)
         }
     }
 }

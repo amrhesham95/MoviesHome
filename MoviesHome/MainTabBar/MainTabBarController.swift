@@ -17,9 +17,9 @@ class MainTabBarController: UITabBarController {
     return MoviesHomeViewController()
   }()
   
-//  private let favoritesViewController: FavoriteScreenViewController = {
-//    return FavoriteScreenViewController()
-//  }()
+  private let favoritesViewController: FavoritesViewController = {
+    return FavoritesViewController()
+  }()
   
   func showMoviesScreen() {
     configureTabViewControllers()
@@ -53,8 +53,8 @@ private extension MainTabBarController {
       let moviesTabIndex = AppTab.movies.visibleIndex()
       controllers.insert(UINavigationController(rootViewController: moviesViewController), at: moviesTabIndex)
       
-//      let favoritesTabIndex = AppTab.favorites.visibleIndex()
-//      controllers.insert(UINavigationController(rootViewController: favoritesViewController), at: favoritesTabIndex)
+      let favoritesTabIndex = AppTab.favorites.visibleIndex()
+      controllers.insert(UINavigationController(rootViewController: favoritesViewController), at: favoritesTabIndex)
 
       
       return controllers
@@ -68,7 +68,7 @@ private extension MainTabBarController {
     let moviesTab = UITabBarItem(title: "Movies", image: UIImage(named: ""), selectedImage: nil)
     moviesViewController.navigationController?.tabBarItem = moviesTab
     
-//    let favoritesTab = UITabBarItem(title: "Favorite".localized, image: Asset.favoriteTabIcon.image, selectedImage: nil)
-//    favoritesViewController.navigationController?.tabBarItem = favoritesTab
+    let favoritesTab = UITabBarItem(title: "Favorite", image: UIImage(named: ""), selectedImage: nil)
+    favoritesViewController.navigationController?.tabBarItem = favoritesTab
   }
 }

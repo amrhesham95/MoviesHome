@@ -8,11 +8,12 @@
 import Foundation
 
 // MARK: - Typealias
-typealias GetMoviesCompletion = (Result<[Movie], Error>) -> Void
+typealias GetMoviesCompletion = (Result<[StorageMovie], Error>) -> Void
 
 // MARK: - Store
 //
 protocol MoviesStoreProtocol {
     var network: NetworkService { get }
     func loadMovies(for pageNum: Int, completion: @escaping GetMoviesCompletion)
+    func updateMovie(storageMovie: StorageMovie, pageID: Int)
 }

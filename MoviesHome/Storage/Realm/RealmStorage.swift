@@ -35,7 +35,7 @@ extension RealmStorage {
     return objects.compactMap { $0 }
   }
       
-  public func insertNewObject<T>(object: T) throws where T: Object {
+  public func update<T>(object: T) throws where T: Object {
     try realm.write {
       realm.add(object, update: .modified)
     }
@@ -100,9 +100,9 @@ extension RealmStorage: StorageManagerProtocol {
         return  allObjects(ofType: type, matching: predicate) as? [T]  ?? []
     }
     
-    public func insert<T>(object: T) throws {
+    public func updateObject<T>(_ object: T) throws {
         if let object = object as? Object {
-            try insertNewObject(object: object)
+            try update(object: object)
         }
     }
 }
