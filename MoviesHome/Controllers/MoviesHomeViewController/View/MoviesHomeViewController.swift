@@ -9,6 +9,8 @@ import UIKit
 
 final class MoviesHomeViewController: BaseViewController {
     
+    // MARK: - Properties
+    weak var coordinator: AppCoordinator?
     var moviesViewModel: MoviesHomeViewModel = MoviesHomeViewModel()
     
     lazy var collectionViewLayout: UICollectionViewFlowLayout = {
@@ -79,6 +81,7 @@ extension MoviesHomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell: GenericCollectionViewCell<MovieCardView> = collectionView.dequeue(at: indexPath)
+        cell.cellView?.removeFromSuperview()
         let cardView = MovieCardView(frame: .zero)
         cell.cellView = cardView
         cell.cellView?.movie = moviesViewModel.movieAt(indexPath.item)

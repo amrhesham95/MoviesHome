@@ -24,7 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Main Window
     ///
     var window: UIWindow?
-
+    
+    /// Coordinates app navigation.
+    ///
+    var appCoordinator: AppCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -36,7 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 private extension AppDelegate {
     func setupWindow() {
         window = UIWindow()
-        window?.rootViewController = MoviesHomeViewController()
+        let navigationController = UINavigationController()
+        appCoordinator = AppCoordinator(navigationController: navigationController)
+        window?.rootViewController = appCoordinator?.tabBarController
+
         window?.makeKeyAndVisible()
     }
 }

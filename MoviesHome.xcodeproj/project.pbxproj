@@ -12,6 +12,9 @@
 		EF20F88C28022AB300895DCE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = EF20F88B28022AB300895DCE /* Realm */; };
 		EF20F88E28022AB300895DCE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF20F88D28022AB300895DCE /* RealmSwift */; };
 		EF20F8902802307600895DCE /* Movie+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F88F2802307600895DCE /* Movie+Realm.swift */; };
+		EF20F89A2804ECD700895DCE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F8982804ECD700895DCE /* MainTabBarController.swift */; };
+		EF20F89B2804ECD700895DCE /* AppTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F8992804ECD700895DCE /* AppTab.swift */; };
+		EF20F89D2804FC6800895DCE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F89C2804FC6800895DCE /* AppCoordinator.swift */; };
 		EF96920627FF75E000F8B70F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920527FF75E000F8B70F /* AppDelegate.swift */; };
 		EF96920A27FF75E000F8B70F /* MoviesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920927FF75E000F8B70F /* MoviesHomeViewController.swift */; };
 		EF96920F27FF75E200F8B70F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF96920E27FF75E200F8B70F /* Assets.xcassets */; };
@@ -72,6 +75,9 @@
 /* Begin PBXFileReference section */
 		EF20F8882802285500895DCE /* RealmStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
 		EF20F88F2802307600895DCE /* Movie+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+Realm.swift"; sourceTree = "<group>"; };
+		EF20F8982804ECD700895DCE /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		EF20F8992804ECD700895DCE /* AppTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTab.swift; sourceTree = "<group>"; };
+		EF20F89C2804FC6800895DCE /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EF96920227FF75E000F8B70F /* MoviesHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF96920527FF75E000F8B70F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF96920927FF75E000F8B70F /* MoviesHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesHomeViewController.swift; sourceTree = "<group>"; };
@@ -162,6 +168,15 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		EF20F8972804ECD700895DCE /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				EF20F8982804ECD700895DCE /* MainTabBarController.swift */,
+				EF20F8992804ECD700895DCE /* AppTab.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
 		EF9691F927FF75E000F8B70F = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +196,8 @@
 		EF96920427FF75E000F8B70F /* MoviesHome */ = {
 			isa = PBXGroup;
 			children = (
+				EF20F89C2804FC6800895DCE /* AppCoordinator.swift */,
+				EF20F8972804ECD700895DCE /* MainTabBar */,
 				EF20F8862802285500895DCE /* Storage */,
 				EF96929728008B7300F8B70F /* Styles */,
 				EF96927C28008A6D00F8B70F /* ReusableViews */,
@@ -483,10 +500,13 @@
 				EF96926C27FF8AF400F8B70F /* URLRequestConvertible.swift in Sources */,
 				EF96926227FF88DC00F8B70F /* MoviesStore.swift in Sources */,
 				EF96925627FF867800F8B70F /* DisposeBag.swift in Sources */,
+				EF20F89B2804ECD700895DCE /* AppTab.swift in Sources */,
 				EF96920627FF75E000F8B70F /* AppDelegate.swift in Sources */,
 				EF9692A728008B7300F8B70F /* UISettings.swift in Sources */,
 				EF96928B28008A6D00F8B70F /* ActionsFooterView.swift in Sources */,
+				EF20F89D2804FC6800895DCE /* AppCoordinator.swift in Sources */,
 				EF20F8892802285500895DCE /* RealmStorage.swift in Sources */,
+				EF20F89A2804ECD700895DCE /* MainTabBarController.swift in Sources */,
 				EF96926E27FF8AF400F8B70F /* APIEndPoint.swift in Sources */,
 				EF96925D27FF88AC00F8B70F /* ViewModel.swift in Sources */,
 				EF20F8902802307600895DCE /* Movie+Realm.swift in Sources */,
