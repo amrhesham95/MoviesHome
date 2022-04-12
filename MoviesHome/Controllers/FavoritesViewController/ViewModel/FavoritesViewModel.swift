@@ -9,18 +9,18 @@ import Foundation
 
 class FavoritesViewModel: ViewModel {
     // MARK: - Properties
-    let favoritesSubject: PublishSubject<([Movie])> = PublishSubject<([Movie])>()
+    let favoritesSubject: PublishSubject<([StorageMovie])> = PublishSubject<([StorageMovie])>()
     
     private let disposeBag = DisposeBag()
     private let storage: StorageManagerProtocol
     
-    private var movies: [Movie] = []
+    private var movies: [StorageMovie] = []
     
     var moviesCount: Int {
         return movies.count
     }
     
-    func movieAt(_ index: Int) -> Movie? {
+    func movieAt(_ index: Int) -> StorageMovie? {
         guard index < movies.count - 1 else { return nil }
         return movies[index]
     }
@@ -33,9 +33,9 @@ class FavoritesViewModel: ViewModel {
     func getFavorites() {
         let query = "isFavorite == \(true)"
         let predicate = NSPredicate(format: query)
-        let movies = storage
+        let storageMovies = storage
             .getAllObjects(ofType: StorageMovie.self, matching: predicate)
-            .map { Movie(storage: $0) }
+        movies = storageMovies
         favoritesSubject.send(movies)
     }
 }

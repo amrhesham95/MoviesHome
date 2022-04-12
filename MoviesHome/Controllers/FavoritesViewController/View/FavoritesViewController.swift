@@ -37,6 +37,10 @@ class FavoritesViewController: BaseViewController {
         bindOnViewModel(favoritesViewModel)
         bindLoadingState(to: favoritesViewModel)
         bindErrorState(to: favoritesViewModel)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         favoritesViewModel.getFavorites()
     }
     
