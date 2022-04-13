@@ -254,19 +254,13 @@
 		EF96920427FF75E000F8B70F /* MoviesHome */ = {
 			isa = PBXGroup;
 			children = (
-				EF20F89C2804FC6800895DCE /* AppCoordinator.swift */,
-				EF20F8972804ECD700895DCE /* MainTabBar */,
+				EFC046EB280668E90060FCAD /* ViewRelated */,
 				EF20F8862802285500895DCE /* Storage */,
 				EF96929728008B7300F8B70F /* Styles */,
-				EF96927C28008A6D00F8B70F /* ReusableViews */,
 				EF96926527FF8AF400F8B70F /* Network */,
 				EF96925F27FF88DC00F8B70F /* Store */,
-				EF96925A27FF88AC00F8B70F /* BaseViewModel */,
 				EF96924727FF867800F8B70F /* Tools */,
 				EF96923A27FF835100F8B70F /* Models */,
-				EF96923927FF834900F8B70F /* Views */,
-				EF96923827FF833900F8B70F /* Cells */,
-				EF96923727FF832300F8B70F /* Controllers */,
 				EF96923627FF82FF00F8B70F /* Extensions */,
 				EF96920527FF75E000F8B70F /* AppDelegate.swift */,
 				EF96921927FF77EA00F8B70F /* Constants.swift */,
@@ -461,6 +455,20 @@
 				EF96929F28008B7300F8B70F /* UISettings.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		EFC046EB280668E90060FCAD /* ViewRelated */ = {
+			isa = PBXGroup;
+			children = (
+				EF20F89C2804FC6800895DCE /* AppCoordinator.swift */,
+				EF96927C28008A6D00F8B70F /* ReusableViews */,
+				EF20F8972804ECD700895DCE /* MainTabBar */,
+				EF96923827FF833900F8B70F /* Cells */,
+				EF96923927FF834900F8B70F /* Views */,
+				EF96925A27FF88AC00F8B70F /* BaseViewModel */,
+				EF96923727FF832300F8B70F /* Controllers */,
+			);
+			path = ViewRelated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
