@@ -13,8 +13,8 @@ class MainTabBarController: UITabBarController {
   
   // MARK: - Properties
   
-  private let moviesViewController: MoviesHomeViewController = {
-    return MoviesHomeViewController()
+  private let moviesCoordinator: MoviesCoordinator = {
+    return MoviesCoordinator(navigationController: UINavigationController())
   }()
   
   private let favoritesViewController: FavoritesViewController = {
@@ -22,6 +22,7 @@ class MainTabBarController: UITabBarController {
   }()
   
   func showMoviesScreen() {
+    moviesCoordinator.start()
     configureTabViewControllers()
     configureTabBarItems()
   }
@@ -32,7 +33,7 @@ class MainTabBarController: UITabBarController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    moviesCoordinator.start()
     configureTabViewControllers()
     configureTabBarItems()
   }
@@ -51,7 +52,7 @@ private extension MainTabBarController {
       var controllers = viewControllers ?? []
       
       let moviesTabIndex = AppTab.movies.visibleIndex()
-      controllers.insert(UINavigationController(rootViewController: moviesViewController), at: moviesTabIndex)
+        controllers.insert(moviesCoordinator.navigationController, at: moviesTabIndex)
       
       let favoritesTabIndex = AppTab.favorites.visibleIndex()
       controllers.insert(UINavigationController(rootViewController: favoritesViewController), at: favoritesTabIndex)
@@ -66,7 +67,7 @@ private extension MainTabBarController {
   func configureTabBarItems() {
    
     let moviesTab = UITabBarItem(title: "Movies", image: UIImage(named: ""), selectedImage: nil)
-    moviesViewController.navigationController?.tabBarItem = moviesTab
+      moviesCoordinator.navigationController.tabBarItem = moviesTab
     
     let favoritesTab = UITabBarItem(title: "Favorite", image: UIImage(named: ""), selectedImage: nil)
     favoritesViewController.navigationController?.tabBarItem = favoritesTab

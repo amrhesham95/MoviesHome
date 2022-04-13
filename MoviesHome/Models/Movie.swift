@@ -67,7 +67,7 @@ extension Movie {
         storageMovie.movieID = id?.description ?? UUID().uuidString
         storageMovie.title = title
         storageMovie.pageID = pageID
-        
+        storageMovie.overview = overview ?? ""
         return storageMovie
     }
 }

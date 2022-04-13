@@ -17,6 +17,8 @@
 		EF20F89D2804FC6800895DCE /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F89C2804FC6800895DCE /* AppCoordinator.swift */; };
 		EF20F8A22804FF6100895DCE /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F8A12804FF6100895DCE /* FavoritesViewController.swift */; };
 		EF20F8A42804FF6A00895DCE /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF20F8A32804FF6A00895DCE /* FavoritesViewModel.swift */; };
+		EF595FD228062C3B0061288A /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF595FD128062C3B0061288A /* DetailsViewController.swift */; };
+		EF595FD628062E6A0061288A /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF595FD528062E6A0061288A /* DetailsViewModel.swift */; };
 		EF96920627FF75E000F8B70F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920527FF75E000F8B70F /* AppDelegate.swift */; };
 		EF96920A27FF75E000F8B70F /* MoviesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF96920927FF75E000F8B70F /* MoviesHomeViewController.swift */; };
 		EF96920F27FF75E200F8B70F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF96920E27FF75E200F8B70F /* Assets.xcassets */; };
@@ -82,6 +84,8 @@
 		EF20F89C2804FC6800895DCE /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EF20F8A12804FF6100895DCE /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		EF20F8A32804FF6A00895DCE /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		EF595FD128062C3B0061288A /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		EF595FD528062E6A0061288A /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		EF96920227FF75E000F8B70F /* MoviesHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF96920527FF75E000F8B70F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF96920927FF75E000F8B70F /* MoviesHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesHomeViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +210,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		EF595FD028062C250061288A /* DetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EF595FD428062E620061288A /* ViewModel */,
+				EF595FD328062E5B0061288A /* View */,
+			);
+			path = DetailsViewController;
+			sourceTree = "<group>";
+		};
+		EF595FD328062E5B0061288A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EF595FD128062C3B0061288A /* DetailsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EF595FD428062E620061288A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EF595FD528062E6A0061288A /* DetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		EF9691F927FF75E000F8B70F = {
 			isa = PBXGroup;
 			children = (
@@ -267,8 +296,9 @@
 		EF96923727FF832300F8B70F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EF20F89E2804FF3900895DCE /* FavoritesViewController */,
+				EF595FD028062C250061288A /* DetailsViewController */,
 				EF96927A280089F900F8B70F /* BaseViewController.swift */,
+				EF20F89E2804FF3900895DCE /* FavoritesViewController */,
 				EF96927227FF8CC500F8B70F /* MoviesHomeViewController */,
 			);
 			path = Controllers;
@@ -534,6 +564,7 @@
 				EF96925627FF867800F8B70F /* DisposeBag.swift in Sources */,
 				EF20F89B2804ECD700895DCE /* AppTab.swift in Sources */,
 				EF96920627FF75E000F8B70F /* AppDelegate.swift in Sources */,
+				EF595FD228062C3B0061288A /* DetailsViewController.swift in Sources */,
 				EF9692A728008B7300F8B70F /* UISettings.swift in Sources */,
 				EF96928B28008A6D00F8B70F /* ActionsFooterView.swift in Sources */,
 				EF20F89D2804FC6800895DCE /* AppCoordinator.swift in Sources */,
@@ -560,6 +591,7 @@
 				EF96925527FF867800F8B70F /* DisposeBase.swift in Sources */,
 				EF96929428008A6D00F8B70F /* ProgressViewable.swift in Sources */,
 				EF96925E27FF88AC00F8B70F /* State.swift in Sources */,
+				EF595FD628062E6A0061288A /* DetailsViewModel.swift in Sources */,
 				EF96927B280089F900F8B70F /* BaseViewController.swift in Sources */,
 				EF96921E27FF78A000F8B70F /* UIViewController+Helpers.swift in Sources */,
 				EF96922D27FF7C3D00F8B70F /* Font+Helpers.swift in Sources */,

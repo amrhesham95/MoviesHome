@@ -10,7 +10,7 @@ import UIKit
 final class MoviesHomeViewController: BaseViewController {
     
     // MARK: - Properties
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: MoviesCoordinator?
     var moviesViewModel: MoviesHomeViewModel = MoviesHomeViewModel()
     
     lazy var collectionViewLayout: UICollectionViewFlowLayout = {
@@ -104,6 +104,14 @@ extension MoviesHomeViewController: UICollectionViewDataSource {
 extension MoviesHomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         loadMoreMoviesIfNeeded(indexPath: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let imageURL = moviesViewModel.posterURL(indexPath.item)
+        guard let movie = moviesViewModel.movieAt(indexPath.item) else { return }
+        coordinator?.showMovieDetailsViewController(movieImageURL: imageURL,
+                                                    movieDescription: movie.overview,
+                                                    movieTitle: movie.title)
     }
 }
 
