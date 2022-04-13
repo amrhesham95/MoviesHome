@@ -19,7 +19,6 @@ class FavoritesViewController: BaseViewController {
         tableView.backgroundColor = .appBackground()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         tableView.dataSource = self
-        //        tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -52,8 +51,6 @@ class FavoritesViewController: BaseViewController {
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.pinEdgesToSuperview()
-        //        tableView.registerCell(GenericCollectionViewCell<MovieCardView>.self)
-        //        collectionView.register(FooterView.self, ofKind: UICollectionView.elementKindSectionFooter)
     }
     
     

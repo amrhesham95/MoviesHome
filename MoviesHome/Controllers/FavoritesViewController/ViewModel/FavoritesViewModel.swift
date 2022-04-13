@@ -21,7 +21,7 @@ class FavoritesViewModel: ViewModel {
     }
     
     func movieAt(_ index: Int) -> StorageMovie? {
-        guard index < movies.count - 1 else { return nil }
+        guard index <= movies.count - 1 else { return nil }
         return movies[index]
     }
 
@@ -36,6 +36,6 @@ class FavoritesViewModel: ViewModel {
         let storageMovies = storage
             .getAllObjects(ofType: StorageMovie.self, matching: predicate)
         movies = storageMovies
-        favoritesSubject.send(movies)
+        favoritesSubject.send(storageMovies)
     }
 }
